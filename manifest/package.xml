@@ -7,10 +7,16 @@
         <members>PositionTriggerHandler</members>
         <members>CandidateWeatherController</members>
         <members>WeatherServices</members>
+        <members>EmailTemplateServices</members>
+        <members>JobApplicationTriggerHandler</members>
+        <members>Coordinates</members>
+        <members>ResultWeather</members>
+        <members>CandidateControllerCX</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>CandidateWeatherControllerCC</members>
+        <members>CandidateControllerCC</members>
         <name>ApexPage</name>
     </types>
     <types>

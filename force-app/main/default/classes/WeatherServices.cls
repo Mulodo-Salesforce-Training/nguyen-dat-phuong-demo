@@ -1,32 +1,18 @@
 public class WeatherServices {
-    /**
-     * Get lat, lng from address
-     */
-    public Map<String, Object> searchPlace(String address){
+   
+    public ResultWeather searchWeather(String address){
         HttpRequest req = new HttpRequest();
-        String url = 'https://nominatim.openstreetmap.org/search?format=json&q='+address;
+        String url = 'https://api.openweathermap.org/data/2.5/weather?appid=0975979bdf806a4ff40bb1b5a9bde994&q=' + EncodingUtil.urlEncode(address, 'UTF-8');
         req.setEndpoint(url);
         req.setMethod('GET');
         Http http = new Http();
         HTTPResponse res= http.send(req);
         string response = res.getBody();
-        List<Map<String, Object>> parserResults = (List<Map<String, Object>>) JSON.deserializeUntyped(response);
-        if(parserResults.size() > 0){
-            return parserResults.get(0);
+        try {
+            return (ResultWeather)JSON.deserialize(response, ResultWeather.class);
+        } catch (JSONException e) {
+            
         }
         return null;
-    }
-    /**
-     * Get weather from lat, lng
-     */
-    public Map<String, Object> searchWeather(double lat, double lng){
-        HttpRequest req = new HttpRequest();
-        String url = 'https://api.openweathermap.org/data/2.5/weather?appid=53bef0d54f0a5b823e659fdc7c21fa32&lat='+lat+'&lon='+lng;
-        req.setEndpoint(url);
-        req.setMethod('GET');
-        Http http = new Http();
-        HTTPResponse res= http.send(req);
-        string response = res.getBody();
-        return (Map<String, Object>) JSON.deserializeUntyped(response);
     }
 }
