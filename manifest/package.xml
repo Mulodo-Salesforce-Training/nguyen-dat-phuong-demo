@@ -12,11 +12,14 @@
         <members>Coordinates</members>
         <members>ResultWeather</members>
         <members>CandidateControllerCX</members>
+        <members>UploadException</members>
+        <members>CandidateMapController</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>CandidateWeatherControllerCC</members>
         <members>CandidateControllerCC</members>
+        <members>CandidateMapControllerCC</members>
         <name>ApexPage</name>
     </types>
     <types>

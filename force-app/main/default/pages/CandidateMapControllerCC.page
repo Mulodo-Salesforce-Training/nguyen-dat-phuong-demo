@@ -1,0 +1,74 @@
+<apex:page controller="CandidateMapController">
+    <style>
+        #map {
+            height: 450px;
+        }
+    </style>
+    <apex:pageBlock title="Candidate Map">
+        <div id="map"></div>
+    </apex:pageBlock>
+    <script>
+        var map;
+        var marker;
+        function initMap() {
+            map = new google
+                .maps
+                .Map(document.getElementById('map'), {
+                    zoom: 13,
+                    center: {
+                        lat: 59.325,
+                        lng: 18.070
+                    }
+                });
+           
+            var address = "{!address}";
+            if (address !== '') {
+                geocodeAddress(address);
+            }
+        }
+
+        function geocodeAddress(address) {
+
+            $.ajax({
+                url: 'https://nominatim.openstreetmap.org/search?format=json&q='+address,
+                method: 'get',
+                dataType: 'json',
+                success: function(res){
+                    if(res.length > 0){
+                        var loc = {
+                            lat: parseFloat(res[0].lat),
+                            lng: parseFloat(res[0].lon)
+                        }
+                        map.setCenter(loc);
+                        map.setZoom(18);
+                        marker = new google
+                        .maps
+                        .Marker(
+                            {
+                                draggable: false,
+                                animation: google.maps.Animation.DROP,
+                                map: map,
+                                position: loc
+                            }
+                        );
+                    marker.addListener('click', toggleBounce);
+                    }
+                }
+            });
+        }
+
+        function toggleBounce() {
+            if (marker.getAnimation() !== null) {
+                marker.setAnimation(null);
+            } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+    <script
+        async="async"
+        defer="defer"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYXzg_sD7ofBRF4u3eIvBInloc78GMz1c&callback=initMap"></script>
+
+</apex:page>

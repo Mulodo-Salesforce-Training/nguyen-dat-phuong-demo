@@ -1,7 +1,6 @@
 <apex:page controller="CandidateWeatherController">     
     <apex:form >
         <apex:pageBlock title="Candidate Weather">
-            {!candidateId}
             {!weather}
         </apex:pageBlock>
     </apex:form>

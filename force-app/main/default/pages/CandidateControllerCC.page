@@ -33,7 +33,7 @@
             </apex:pageBlockSection>
             <apex:pageBlockSection collapsible="false" title="Profile" columns="1">
                 <apex:outputLabel value="Avartar" for="attachment"/>
-                <apex:inputFile accept="png,jpg" fileSize="5" id="attachment" value="{!attachment.body}" filename="{!attachment.name}"/>
+                <apex:inputFile size="{!5}" fileName="{!5}" accept="image/jpeg,image/pjpeg,image/jpeg,image/png" id="attachment" value="{!attachment.body}" contentType="{!attachment.ContentType}" filename="{!attachment.name}"/>
                 <apex:image id="imageAvatar" value="https://c.ap6.visual.force.com/servlet/servlet.FileDownload?file={!attachmentId}" alt="No avatar" width="60" height="60"/>
             </apex:pageBlockSection>
         </apex:pageBlock>

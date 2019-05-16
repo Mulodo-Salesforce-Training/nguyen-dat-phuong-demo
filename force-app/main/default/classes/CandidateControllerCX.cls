@@ -11,13 +11,14 @@ public class CandidateControllerCX {
     }
 
     public Attachment getAttachment() {
-        mAttachment =  new Attachment();
+        mAttachment = new Attachment();
+        mAttachment.ContentType = 'image/jpeg,image/png';
         return mAttachment;
     }
 
-    public String getAttachmentId(){
+    public String getAttachmentId() {
         Attachment temp = candidateServices.findAvatar(mCandidate.Id);
-        if(temp != null){
+        if (temp != null) {
             mAttachmentId = temp.Id;
         }
         return mAttachmentId;
@@ -26,7 +27,7 @@ public class CandidateControllerCX {
     public PageReference save() {
         try {
             processSave();
-        } catch (DmlException e) {
+        } catch (Exception e) {
             ApexPages.addMessage(
                 new ApexPages.Message(ApexPages.severity.ERROR, e.getMessage())
             );
@@ -40,7 +41,7 @@ public class CandidateControllerCX {
     public PageReference saveAndNew() {
         try {
             processSave();
-        } catch (DmlException e) {
+        } catch (Exception e) {
             ApexPages.addMessage(
                 new ApexPages.Message(ApexPages.severity.ERROR, e.getMessage())
             );
@@ -51,17 +52,26 @@ public class CandidateControllerCX {
     }
 
     private void processSave() {
-        try {
-            Database.upsert(mCandidate);
-            if (mAttachment.Name != null) {
-                if(mAttachmentId != null){
-                    Database.delete(mAttachmentId);
+        Savepoint sp = Database.setSavepoint();
+        Database.upsert(mCandidate);
+        System.debug(mAttachment);
+        if (mAttachment.Name != null) {
+            String contentType = mAttachment.ContentType;
+            if (contentType.equalsIgnoreCase('image/jpeg') || contentType.equalsIgnoreCase('image/png')) {
+                if (mAttachment.Body.size() <= 5242880) {
+                    if (mAttachmentId != null) {
+                        Database.delete(mAttachmentId);
+                    }
+                    mAttachment.ParentId = mCandidate.Id;
+                    Database.insert(mAttachment);
+                } else {
+                    Database.rollback(sp);
+                    throw new UploadException('File Size Maximum 5MB');
                 }
-                mAttachment.ParentId = mCandidate.Id;
-                Database.insert(mAttachment);
+            } else {
+                Database.rollback(sp);
+                throw new UploadException('File extension must be jpg, png');
             }
-        } catch (DmlException e) {
-            throw e;
         }
     }
 
