@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standard_Position</fullName>
+    <active>true</active>
+    <description>Record type for all non-IT positions</description>
+    <label>Standard Position</label>
+    <picklistValues>
+        <picklist>Functional_Area__c</picklist>
+        <values>
+            <fullName>Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Human Resources</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retail Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Warehousing</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Job_Level__c</picklist>
+        <values>
+            <fullName>Fresher</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Junior</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lead</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Senior</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Location__c</picklist>
+        <values>
+            <fullName>At home</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Da Nang</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ha Noi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sai Gon</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Closed - Canceled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed - Filled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed - Not Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open - Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Approval</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Contractor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internship</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Part Time</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

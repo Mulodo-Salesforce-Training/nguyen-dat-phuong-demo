@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+       
         <members>EmailManager</members>
         <members>CandidateServices</members>
         <members>PositionServices</members>
@@ -14,6 +15,10 @@
         <members>CandidateControllerCX</members>
         <members>UploadException</members>
         <members>CandidateMapController</members>
+
+        <members>CandidateTest</members>
+        <members>PositionTest</members>
+        <members>JobApplicationsTest</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -26,6 +31,12 @@
         <members>JobApplicationTrigger</members>
         <members>PositionTrigger</members>
         <name>ApexTrigger</name>
+    </types>
+    <types>
+        <members>Candidate__c</members>
+        <members>Position__c</members>
+        <members>Job_Application__c</members>
+        <name>CustomObject</name>
     </types>
     <version>45.0</version>
 </Package>

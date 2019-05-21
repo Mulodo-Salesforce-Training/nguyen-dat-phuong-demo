@@ -10,7 +10,7 @@ public class JobApplicationTriggerHandler {
                 try{
                     Candidate__c candidate = candidateServices.findSendMailConfirm(jobApplication.Candidate__c);
                     if(candidate != null){
-                        EmailManager.sendConfirmInterview(candidate, jobApplication);
+                        EmailManager.sendConfirmInterview(candidate.Email__c, jobApplication.Id);
                     }
                 }catch(System.EmailException e){
                     System.debug(e);
